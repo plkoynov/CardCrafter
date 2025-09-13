@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Card Layout",
+  "type": "object",
+  "properties": {
+    "type": { "type": "string", "enum": ["card"] },
+    "id": { "type": "string" },
+    "width": { "type": "string", "description": "Tailwind width classes or px value" },
+    "height": { "type": "string" },
+    "styles": { "type": "object" },
+    "children": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          { "$ref": "#/definitions/heading" },
+          { "$ref": "#/definitions/text" },
+          { "$ref": "#/definitions/image" },
+          { "$ref": "#/definitions/column" }
+        ]
+      }
+    }
+  },
+  "required": ["type", "id"],
+  "definitions": {
+    "base": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string" },
+        "id": { "type": "string" },
+        "styles": { "type": "object" }
+      },
+      "required": ["type", "id"]
+    },
+    "heading": {
+      "allOf": [ { "$ref": "#/definitions/base" }, { "properties": { "type": { "const": "heading" }, "text": { "type": "string" } }, "required": ["text"] } ]
+    },
+    "text": {
+      "allOf": [ { "$ref": "#/definitions/base" }, { "properties": { "type": { "const": "text" }, "text": { "type": "string" } }, "required": ["text"] } ]
+    },
+    "image": {
+      "allOf": [ { "$ref": "#/definitions/base" }, { "properties": { "type": { "const": "image" }, "src": { "type": "string" }, "alt": { "type": "string" } }, "required": ["src"] } ]
+    },
+    "column": {
+      "allOf": [ { "$ref": "#/definitions/base" }, { "properties": { "type": { "const": "column" }, "children": { "type": "array", "items": { "$ref": "#/definitions/base" } } } } ]
+    }
+  }
+}
