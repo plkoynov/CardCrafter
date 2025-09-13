@@ -1,0 +1,42 @@
+<!-- CardCrafter Layout Component -->
+<div class="min-h-screen flex flex-col bg-gray-50">
+  <!-- Header -->
+  <header
+    class="h-16 sm:h-12 px-6 sm:px-2 w-full flex items-center justify-between bg-white border-b border-gray-300 shadow-sm"
+  >
+    <div class="flex items-center gap-4">
+      <span class="text-2xl font-bold text-blue-700">CardCrafter</span>
+      <!-- Navigation (optional) -->
+    </div>
+    <div class="flex gap-2">
+      <button
+        class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 focus:ring-2 focus:ring-blue-800"
+      >
+        New Card
+      </button>
+      <button
+        class="bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-600 focus:ring-2 focus:ring-blue-800"
+      >
+        Open Card
+      </button>
+      <button
+        class="bg-gray-50 text-blue-700 border border-blue-700 px-4 py-2 rounded hover:bg-blue-50 focus:ring-2 focus:ring-blue-800"
+      >
+        Export
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 w-full p-6 sm:p-2">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Footer -->
+  <footer
+    class="h-10 sm:h-8 px-6 sm:px-2 w-full flex items-center justify-between bg-white border-t border-gray-300 text-xs sm:text-[10px]"
+  >
+    <span class="text-gray-600">© 2025 CardCrafter. All rights reserved.</span>
+    <span class="text-gray-600">v1.0.0</span>
+  </footer>
+</div>

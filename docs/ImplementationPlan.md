@@ -28,7 +28,7 @@
 
 - [ ] **Layout Management**
 
-  - [ ] Define JSON schema for card layout
+  - [x] Define JSON schema for card layout
   - [ ] Implement service for managing layout JSON
   - [ ] Implement functionality for adding/removing components to the layout
   - [ ] Implement support for nested components (e.g., columns containing text, images, etc.)

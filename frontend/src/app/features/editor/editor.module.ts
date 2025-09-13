@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { EditorWorkspaceComponent } from './components/editor-workspace/editor-workspace.component';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule],
+  imports: [CommonModule, EditorWorkspaceComponent],
 })
 export class EditorModule {}
