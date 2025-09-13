@@ -11,14 +11,12 @@ frontend/src/app
   - guards/
   - interceptors/
   - core.module.ts
-  - README.md
 - shared/ // reusable presentational pieces (no singletons)
   - ui/ // primitive UI components (Heading, Text, Image, Card, Column)
   - components/ // small composed controls (style-controls, export-controls)
   - pipes/
   - directives/
   - shared.module.ts
-  - README.md
 - features/ // feature modules (lazy-loaded when appropriate)
   - editor/ // Editor feature
     - editor.module.ts
@@ -29,25 +27,21 @@ frontend/src/app
       - property-panel/
     - services/
       - preview-sync.service.ts
-    - README.md
   - preview/ // Live preview feature
     - preview.module.ts
     - components/
       - card-preview/
     - services/
       - preview-renderer.service.ts
-    - README.md
   - export/
     - export.module.ts
     - components/
       - export-controls/
     - services/
       - export.service.ts
-    - README.md
 - models/ // interfaces and JSON schemas used across the app
   - layout.model.ts
   - layout.schema.json
-  - README.md
 
 ## Core Module
 

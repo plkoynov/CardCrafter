@@ -1,4 +1,4 @@
 import { Routes } from '@angular/router';
-import { EditorWorkspaceComponent } from './features/editor/components/editor-workspace/editor-workspace.component';
+import { EditorPageComponent } from './features/editor/pages/editor-page.component';
 
-export const routes: Routes = [{ path: '', component: EditorWorkspaceComponent }];
+export const routes: Routes = [{ path: '', component: EditorPageComponent }];
