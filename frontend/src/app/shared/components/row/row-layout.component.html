@@ -1,13 +1,13 @@
 <div
-  class="card-layout-container w-full p-4 sm:p-2 bg-white rounded-lg shadow-md flex flex-col items-center justify-center"
+  [ngClass]="model.styles"
+  class="row-layout-container flex flex-row"
+  [class.empty]="!model.children || model.children.length === 0"
 >
   @for (child of model.children; track child.id) {
+    {{ child.type }}
     @switch (child.type) {
       @case ('row') {
         <cc-row [model]="child"></cc-row>
-      }
-      @case ('column') {
-        <cc-column [model]="child"></cc-column>
       }
       @case ('heading') {
         <cc-heading [model]="child"></cc-heading>

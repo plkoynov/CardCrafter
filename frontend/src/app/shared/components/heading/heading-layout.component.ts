@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { HeadingComponent } from '../../../models/layout.model';
+import { BaseLayoutComponent } from '../base/base-layout.component';
 
 @Component({
   selector: 'cc-heading',
@@ -9,6 +10,4 @@ import { HeadingComponent } from '../../../models/layout.model';
   standalone: true,
   imports: [CommonModule],
 })
-export class HeadingLayoutComponent {
-  @Input() model!: HeadingComponent;
-}
+export class HeadingLayoutComponent extends BaseLayoutComponent<HeadingComponent> {}

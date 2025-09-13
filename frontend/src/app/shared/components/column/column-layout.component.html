@@ -1,8 +1,16 @@
-<div [ngClass]="model.styles">
+<div
+  [ngClass]="model.styles"
+  class="column-layout-container flex flex-col"
+  [class.selected]="isSelectedAsParentContainer"
+  [class.empty]="!model.children || model.children.length === 0"
+>
   @for (child of model.children; track child.id) {
     @switch (child.type) {
       @case ('column') {
         <cc-column [model]="child"></cc-column>
+      }
+      @case ('row') {
+        <cc-row [model]="child"></cc-row>
       }
       @case ('heading') {
         <cc-heading [model]="child"></cc-heading>

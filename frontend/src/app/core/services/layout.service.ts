@@ -24,6 +24,10 @@ export class LayoutService {
     this.selectedParentId = id;
   }
 
+  getSelectedParentId(): string | null {
+    return this.selectedParentId;
+  }
+
   addComponent(component: BaseComponent): boolean {
     if (!this.selectedParentId) {
       return false;

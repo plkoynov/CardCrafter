@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ImageComponent } from '../../../models/layout.model';
+import { BaseLayoutComponent } from '../base/base-layout.component';
 
 @Component({
   selector: 'cc-image',
@@ -9,6 +10,4 @@ import { ImageComponent } from '../../../models/layout.model';
   standalone: true,
   imports: [CommonModule],
 })
-export class ImageLayoutComponent {
-  @Input() model!: ImageComponent;
-}
+export class ImageLayoutComponent extends BaseLayoutComponent<ImageComponent> {}

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { TextComponent } from '../../../models/layout.model';
+import { BaseLayoutComponent } from '../base/base-layout.component';
 
 @Component({
   selector: 'cc-text',
@@ -9,6 +10,4 @@ import { TextComponent } from '../../../models/layout.model';
   standalone: true,
   imports: [CommonModule],
 })
-export class TextLayoutComponent {
-  @Input() model!: TextComponent;
-}
+export class TextLayoutComponent extends BaseLayoutComponent<TextComponent> {}

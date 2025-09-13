@@ -1,27 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { CardLayout } from '../../../models/layout.model';
+import { RowComponent } from '../../../models/layout.model';
 import { BaseLayoutComponent } from '../base/base-layout.component';
-import { ColumnLayoutComponent } from '../column/column-layout.component';
 import { HeadingLayoutComponent } from '../heading/heading-layout.component';
 import { ImageLayoutComponent } from '../image/image-layout.component';
 import { LinkLayoutComponent } from '../link/link-layout.component';
-import { RowLayoutComponent } from '../row/row-layout.component';
 import { TextLayoutComponent } from '../text/text-layout.component';
 
 @Component({
-  selector: 'cc-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss'],
-  standalone: true,
+  selector: 'cc-row',
+  templateUrl: './row-layout.component.html',
+  styleUrls: ['./row-layout.component.scss'],
   imports: [
     CommonModule,
-    ColumnLayoutComponent,
     HeadingLayoutComponent,
     ImageLayoutComponent,
     LinkLayoutComponent,
     TextLayoutComponent,
-    RowLayoutComponent,
   ],
 })
-export class CardComponent extends BaseLayoutComponent<CardLayout> {}
+export class RowLayoutComponent extends BaseLayoutComponent<RowComponent> {}

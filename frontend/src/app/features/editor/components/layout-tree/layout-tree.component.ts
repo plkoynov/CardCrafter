@@ -14,6 +14,16 @@ import { SvgIconComponent } from '../../../../shared/ui/icons/svg-icon.component
 export class LayoutTreeComponent {
   toolboxItems = [
     {
+      label: 'Row',
+      icon: 'row',
+      onClick: () => this.layoutService.addComponent(this.builder.buildRow()),
+    },
+    {
+      label: 'Column',
+      icon: 'column',
+      onClick: () => this.layoutService.addComponent(this.builder.buildColumn()),
+    },
+    {
       label: 'Heading',
       icon: 'heading',
       onClick: () => this.layoutService.addComponent(this.builder.buildHeading()),
@@ -32,11 +42,6 @@ export class LayoutTreeComponent {
       label: 'Image',
       icon: 'image',
       onClick: () => this.layoutService.addComponent(this.builder.buildImage()),
-    },
-    {
-      label: 'Column',
-      icon: 'column',
-      onClick: () => this.layoutService.addComponent(this.builder.buildColumn()),
     },
   ];
 

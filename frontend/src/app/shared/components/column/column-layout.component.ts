@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ColumnComponent } from '../../../models/layout.model';
+import { BaseLayoutComponent } from '../base/base-layout.component';
 import { HeadingLayoutComponent } from '../heading/heading-layout.component';
 import { ImageLayoutComponent } from '../image/image-layout.component';
 import { LinkLayoutComponent } from '../link/link-layout.component';
+import { RowLayoutComponent } from '../row/row-layout.component';
 import { TextLayoutComponent } from '../text/text-layout.component';
 
 @Component({
@@ -18,8 +20,7 @@ import { TextLayoutComponent } from '../text/text-layout.component';
     ImageLayoutComponent,
     LinkLayoutComponent,
     TextLayoutComponent,
+    RowLayoutComponent,
   ],
 })
-export class ColumnLayoutComponent {
-  @Input() model!: ColumnComponent;
-}
+export class ColumnLayoutComponent extends BaseLayoutComponent<ColumnComponent> {}

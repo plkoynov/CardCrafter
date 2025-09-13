@@ -7,6 +7,7 @@ import {
   HeadingComponent,
   ImageComponent,
   LinkComponent,
+  RowComponent,
   ShapeComponent,
   TextComponent,
 } from '../../models/layout.model';
@@ -53,6 +54,15 @@ export class LayoutComponentBuilderService {
       type: 'image',
       src,
       alt,
+      styles,
+    };
+  }
+
+  buildRow(children: BaseComponent[] = [], styles: Record<string, any> = {}): RowComponent {
+    return {
+      id: this.generateId('row'),
+      type: 'row',
+      children,
       styles,
     };
   }

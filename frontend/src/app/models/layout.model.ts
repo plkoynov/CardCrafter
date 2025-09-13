@@ -3,6 +3,7 @@ export type ComponentType =
   | 'heading'
   | 'text'
   | 'image'
+  | 'row'
   | 'column'
   | 'link'
   | 'divider'
@@ -29,6 +30,11 @@ export interface ImageComponent extends BaseComponent {
   type: 'image';
   src: string;
   alt?: string;
+}
+
+export interface RowComponent extends BaseComponent {
+  type: 'row';
+  children: any[];
 }
 
 export interface ColumnComponent extends BaseComponent {
