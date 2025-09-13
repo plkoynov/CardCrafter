@@ -14,24 +14,24 @@
   - [x] Create core modules: components, services, models
   - [x] Organize folder structure for scalability
 
-- [ ] **Implement Component Library (with Tailwind CSS)**
+- [-] **Implement Component Library (with Tailwind CSS)**
 
-  - [ ] Create Heading component styled with Tailwind
-  - [ ] Create Text component styled with Tailwind
-  - [ ] Create Link component styled with Tailwind
-  - [ ] Create Image component styled with Tailwind
-  - [ ] Create Column container component styled with Tailwind
-  - [ ] Create Row container component (optional), styled with Tailwind
-  - [ ] Create Divider component (optional), styled with Tailwind
-  - [ ] Create Background/Shape component (optional), styled with Tailwind
-  - [ ] Create Card (root) container component styled with Tailwind
+  - [x] Create Heading component styled with Tailwind
+  - [x] Create Text component styled with Tailwind
+  - [x] Create Link component styled with Tailwind
+  - [x] Create Image component styled with Tailwind
+  - [x] Create Column container component styled with Tailwind
+  - [-] Create Row container component (optional), styled with Tailwind
+  - [-] Create Divider component (optional), styled with Tailwind
+  - [-] Create Background/Shape component (optional), styled with Tailwind
+  - [x] Create Card (root) container component styled with Tailwind
 
 - [ ] **Layout Management**
 
   - [x] Define JSON schema for card layout
-  - [ ] Implement service for managing layout JSON
-  - [ ] Implement functionality for adding/removing components to the layout
-  - [ ] Implement support for nested components (e.g., columns containing text, images, etc.)
+  - [x] Implement service for managing layout JSON
+  - [x] Implement functionality for adding/removing components to the layout
+  - [x] Implement support for nested components (e.g., columns containing text, images, etc.)
   - [ ] Implement drag-and-drop for components (using Angular CDK)
 
 - [ ] **Styling and Responsiveness**

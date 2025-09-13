@@ -1,4 +1,12 @@
-export type ComponentType = 'card' | 'heading' | 'text' | 'image' | 'column';
+export type ComponentType =
+  | 'card'
+  | 'heading'
+  | 'text'
+  | 'image'
+  | 'column'
+  | 'link'
+  | 'divider'
+  | 'background-shape';
 
 export interface BaseComponent {
   id: string;
@@ -9,6 +17,7 @@ export interface BaseComponent {
 export interface HeadingComponent extends BaseComponent {
   type: 'heading';
   text: string;
+  level: number; // 1 to 6
 }
 
 export interface TextComponent extends BaseComponent {
@@ -24,12 +33,31 @@ export interface ImageComponent extends BaseComponent {
 
 export interface ColumnComponent extends BaseComponent {
   type: 'column';
-  children: BaseComponent[];
+  children: any[];
+}
+
+export interface LinkComponent extends BaseComponent {
+  type: 'link';
+  href: string;
+  text: string;
+}
+
+export interface DividerComponent extends BaseComponent {
+  type: 'divider';
+  thickness?: string;
+  color?: string;
+}
+
+export interface ShapeComponent extends BaseComponent {
+  type: 'background-shape';
+  shapeType: 'circle' | 'rectangle' | 'triangle';
+  color: string;
+  size: string;
 }
 
 export interface CardLayout extends BaseComponent {
   type: 'card';
   width?: string;
   height?: string;
-  children?: BaseComponent[];
+  children?: any[];
 }

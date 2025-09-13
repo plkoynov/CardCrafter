@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { CardComponent } from '../../../../shared/ui/card/card.component';
+import { LayoutService } from '../../../../core/services/layout.service';
+import { CardLayout } from '../../../../models/layout.model';
+import { CardComponent } from '../../../../shared/components/card/card.component';
 
 @Component({
   selector: 'cc-editor-canvas',
@@ -8,4 +10,10 @@ import { CardComponent } from '../../../../shared/ui/card/card.component';
   standalone: true,
   imports: [CardComponent],
 })
-export class EditorCanvasComponent {}
+export class EditorCanvasComponent {
+  cardLayout: CardLayout = {} as CardLayout;
+
+  constructor(private layoutService: LayoutService) {
+    this.cardLayout = this.layoutService.getLayout();
+  }
+}

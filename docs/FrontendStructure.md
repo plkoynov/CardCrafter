@@ -19,7 +19,6 @@ frontend/src/app
   - shared.module.ts
 - features/ // feature modules (lazy-loaded when appropriate)
   - editor/ // Editor feature
-    - editor.module.ts
     - pages/
       - editor-page.component.ts
     - components/

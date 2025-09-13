@@ -32,16 +32,46 @@
       "required": ["type", "id"]
     },
     "heading": {
-      "allOf": [ { "$ref": "#/definitions/base" }, { "properties": { "type": { "const": "heading" }, "text": { "type": "string" } }, "required": ["text"] } ]
+      "allOf": [
+        { "$ref": "#/definitions/base" },
+        {
+          "properties": { "type": { "const": "heading" }, "text": { "type": "string" } },
+          "required": ["text"]
+        }
+      ]
     },
     "text": {
-      "allOf": [ { "$ref": "#/definitions/base" }, { "properties": { "type": { "const": "text" }, "text": { "type": "string" } }, "required": ["text"] } ]
+      "allOf": [
+        { "$ref": "#/definitions/base" },
+        {
+          "properties": { "type": { "const": "text" }, "text": { "type": "string" } },
+          "required": ["text"]
+        }
+      ]
     },
     "image": {
-      "allOf": [ { "$ref": "#/definitions/base" }, { "properties": { "type": { "const": "image" }, "src": { "type": "string" }, "alt": { "type": "string" } }, "required": ["src"] } ]
+      "allOf": [
+        { "$ref": "#/definitions/base" },
+        {
+          "properties": {
+            "type": { "const": "image" },
+            "src": { "type": "string" },
+            "alt": { "type": "string" }
+          },
+          "required": ["src"]
+        }
+      ]
     },
     "column": {
-      "allOf": [ { "$ref": "#/definitions/base" }, { "properties": { "type": { "const": "column" }, "children": { "type": "array", "items": { "$ref": "#/definitions/base" } } } } ]
+      "allOf": [
+        { "$ref": "#/definitions/base" },
+        {
+          "properties": {
+            "type": { "const": "column" },
+            "children": { "type": "array", "items": { "$ref": "#/definitions/base" } }
+          }
+        }
+      ]
     }
   }
 }

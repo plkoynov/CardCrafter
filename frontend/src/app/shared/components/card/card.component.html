@@ -1,0 +1,23 @@
+<div
+  class="min-h-[24rem] w-full p-4 sm:p-2 bg-white rounded-lg shadow-md flex flex-col items-center justify-center"
+>
+  @for (child of model.children; track child.id) {
+    @switch (child.type) {
+      @case ('column') {
+        <cc-column [model]="child"></cc-column>
+      }
+      @case ('heading') {
+        <cc-heading [model]="child"></cc-heading>
+      }
+      @case ('image') {
+        <cc-image [model]="child"></cc-image>
+      }
+      @case ('link') {
+        <cc-link [model]="child"></cc-link>
+      }
+      @case ('text') {
+        <cc-text [model]="child"></cc-text>
+      }
+    }
+  }
+</div>
