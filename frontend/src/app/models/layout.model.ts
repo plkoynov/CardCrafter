@@ -15,6 +15,25 @@ export interface BaseComponent {
   styles?: Record<string, any>;
 }
 
+export interface BaseContainerComponent extends BaseComponent {
+  children: any[];
+}
+
+export interface CardLayout extends BaseComponent {
+  type: 'card';
+  width?: string;
+  height?: string;
+  children?: (RowComponent | ColumnComponent)[];
+}
+
+export interface RowComponent extends BaseContainerComponent {
+  type: 'row';
+}
+
+export interface ColumnComponent extends BaseContainerComponent {
+  type: 'column';
+}
+
 export interface HeadingComponent extends BaseComponent {
   type: 'heading';
   text: string;
@@ -30,16 +49,6 @@ export interface ImageComponent extends BaseComponent {
   type: 'image';
   src: string;
   alt?: string;
-}
-
-export interface RowComponent extends BaseComponent {
-  type: 'row';
-  children: any[];
-}
-
-export interface ColumnComponent extends BaseComponent {
-  type: 'column';
-  children: any[];
 }
 
 export interface LinkComponent extends BaseComponent {
@@ -59,11 +68,4 @@ export interface ShapeComponent extends BaseComponent {
   shapeType: 'circle' | 'rectangle' | 'triangle';
   color: string;
   size: string;
-}
-
-export interface CardLayout extends BaseComponent {
-  type: 'card';
-  width?: string;
-  height?: string;
-  children?: any[];
 }
