@@ -4,10 +4,12 @@
   [class.empty]="!model.children || model.children.length === 0"
 >
   @for (child of model.children; track child.id) {
-    {{ child.type }}
     @switch (child.type) {
       @case ('row') {
         <cc-row [model]="child"></cc-row>
+      }
+      @case ('column') {
+        <cc-column [model]="child"></cc-column>
       }
       @case ('heading') {
         <cc-heading [model]="child"></cc-heading>

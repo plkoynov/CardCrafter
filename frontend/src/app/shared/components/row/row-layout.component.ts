@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, forwardRef } from '@angular/core';
 import { RowComponent } from '../../../models/layout.model';
 import { BaseLayoutComponent } from '../base/base-layout.component';
+import { ColumnLayoutComponent } from '../column/column-layout.component';
 import { HeadingLayoutComponent } from '../heading/heading-layout.component';
 import { ImageLayoutComponent } from '../image/image-layout.component';
 import { LinkLayoutComponent } from '../link/link-layout.component';
@@ -17,6 +18,7 @@ import { TextLayoutComponent } from '../text/text-layout.component';
     ImageLayoutComponent,
     LinkLayoutComponent,
     TextLayoutComponent,
+    forwardRef(() => ColumnLayoutComponent),
   ],
 })
 export class RowLayoutComponent extends BaseLayoutComponent<RowComponent> {}
