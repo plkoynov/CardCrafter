@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BaseComponent, CardLayout } from '../../models/layout.model';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { BaseComponent, BaseContainerComponent, CardLayout } from '../../models/layout.model';
+import { LayoutComponentBuilderService } from './layout-component-builder.service';
 
 @Injectable({ providedIn: 'root' })
 export class LayoutService {
@@ -11,39 +13,117 @@ export class LayoutService {
   };
 
   private selectedParentId: string | null = this.layout.id;
+  private selectedComponent$ = new BehaviorSubject<BaseComponent | null>(null);
+
+  constructor(private builder: LayoutComponentBuilderService) {
+    this.setSelectedComponent(this.layout);
+  }
 
   getLayout(): CardLayout {
     return this.layout;
   }
 
-  setLayout(layout: CardLayout): void {
-    this.layout = layout;
+  setSelectedComponent(component: BaseComponent): void {
+    this.selectedParentId = component.id;
+    this.selectedComponent$.next(component);
   }
 
-  setSelectedParentId(id: string | null): void {
-    this.selectedParentId = id;
+  getSelectedComponent(): Observable<BaseComponent | null> {
+    return this.selectedComponent$.asObservable();
   }
 
-  getSelectedParentId(): string | null {
-    return this.selectedParentId;
-  }
-
+  /**
+   * Adds a new component to the currently selected parent in the layout tree.
+   * Handles special logic for rows and columns to ensure correct nesting.
+   * Returns true if the component was added successfully, false otherwise.
+   */
   addComponent(component: BaseComponent): boolean {
+    // If no parent is selected, cannot add component
     if (!this.selectedParentId) {
       return false;
     }
 
+    // Find the selected parent component in the layout tree
     const parent = this.findComponentById(this.layout, this.selectedParentId);
-    if (parent) {
-      if (!('children' in parent) || !(parent as any).children) {
-        return false;
-      }
 
-      (parent as any).children.push(component);
-      return true;
+    // Ensure the parent is a container that can have children
+    if (!parent || !('children' in parent) || !(parent as BaseContainerComponent).children) {
+      return false;
     }
 
-    return false;
+    const parentContainer = parent as BaseContainerComponent;
+    let parentChildren = parentContainer.children as BaseComponent[];
+
+    switch (component.type) {
+      case 'row': {
+        // If parent is a row or card, ensure it has a column child to hold rows
+        if (parentContainer.type === 'row' || parentContainer.type === 'card') {
+          const hasColumnChild = parentChildren[0]?.type === 'column';
+
+          // If no column child exists, create one and move existing children into it
+          if (!hasColumnChild) {
+            const column = this.builder.buildColumn([...parentChildren]);
+            parentContainer.children = [column];
+          }
+
+          // Set parentChildren to the column's children
+          parentChildren = parentContainer.children[0].children as BaseComponent[];
+        }
+
+        // Add the new row component
+        parentChildren.push(component);
+
+        return true;
+      }
+      case 'column': {
+        // If parent is a column or card, ensure it has a row child to hold columns
+        if (parentContainer.type === 'column' || parentContainer.type === 'card') {
+          const hasRowChild = parentChildren[0]?.type === 'row';
+
+          // If no row child exists, create one and move existing children into it
+          if (!hasRowChild) {
+            const row = this.builder.buildRow([...parentChildren]);
+            parentContainer.children = [row];
+          }
+
+          // Set parentChildren to the row's children and add the new column component
+          parentChildren = parentContainer.children[0].children as BaseComponent[];
+
+          // Wrap existing non-column components in new columns
+          const componentsWithoutColumn = parentChildren.filter((c) => c.type !== 'column');
+          componentsWithoutColumn.forEach((cwc) => {
+            const newColumn =
+              cwc.type !== 'row'
+                ? this.builder.buildColumn([this.builder.buildRow([cwc])])
+                : this.builder.buildColumn([cwc]);
+
+            const idx = parentChildren.indexOf(cwc);
+            if (idx >= 0) {
+              parentChildren.splice(idx, 1, newColumn);
+            }
+          });
+
+          parentChildren.push(component);
+
+          return true;
+        } else if (parentContainer.type === 'row') {
+          // If parent is a row, wrap the new column in a row and add it
+          const row = this.builder.buildRow([component]);
+          parentChildren.push(row);
+
+          return true;
+        }
+
+        return false;
+      }
+      default: {
+        // For other component types, wrap the component in a row and add it
+        const row = this.builder.buildRow([component]);
+        parentChildren.push(row);
+
+        return true;
+      }
+    }
   }
 
   removeComponent(id: string): boolean {
@@ -86,11 +166,13 @@ export class LayoutService {
       return false;
     }
 
-    const children = (parent as any).children as BaseComponent[];
+    const parentContainer = parent as BaseContainerComponent;
+    const children = parentContainer.children as BaseComponent[];
 
     const idx = children.findIndex((child) => child.id === id);
     if (idx >= 0) {
       children.splice(idx, 1);
+      this.setSelectedComponent(parent);
       return true;
     }
 
