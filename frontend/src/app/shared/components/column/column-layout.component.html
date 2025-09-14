@@ -1,28 +1,39 @@
 <div
   [ngClass]="model.styles"
-  class="column-layout-container flex flex-col"
-  [class.selected]="isSelectedAsParentContainer"
+  class="column-layout-container flex flex-col p-1"
+  [class.selected]="isSelectedAsParentContainer$ | async"
   [class.empty]="!model.children || model.children.length === 0"
 >
-  @for (child of model.children; track child.id) {
-    @switch (child.type) {
-      @case ('column') {
-        <cc-column [model]="child"></cc-column>
-      }
-      @case ('row') {
-        <cc-row [model]="child"></cc-row>
-      }
-      @case ('heading') {
-        <cc-heading [model]="child"></cc-heading>
-      }
-      @case ('image') {
-        <cc-image [model]="child"></cc-image>
-      }
-      @case ('link') {
-        <cc-link [model]="child"></cc-link>
-      }
-      @case ('text') {
-        <cc-text [model]="child"></cc-text>
+  @if (!model.children.length) {
+    <div class="flex items-center justify-center w-full h-full text-gray-400 italic">
+      <div class="flex flex-col items-center justify-center">
+        <button class="mb-4 hover:cursor-pointer">
+          <svg-icon icon="plus"></svg-icon>
+        </button>
+        <div>No components added yet. Click the + button to add components.</div>
+      </div>
+    </div>
+  } @else {
+    @for (child of model.children; track child.id) {
+      @switch (child.type) {
+        @case ('column') {
+          <cc-column [model]="child"></cc-column>
+        }
+        @case ('row') {
+          <cc-row [model]="child"></cc-row>
+        }
+        @case ('heading') {
+          <cc-heading [model]="child"></cc-heading>
+        }
+        @case ('image') {
+          <cc-image [model]="child"></cc-image>
+        }
+        @case ('link') {
+          <cc-link [model]="child"></cc-link>
+        }
+        @case ('text') {
+          <cc-text [model]="child"></cc-text>
+        }
       }
     }
   }

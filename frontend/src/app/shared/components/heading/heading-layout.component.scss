@@ -1,4 +1,16 @@
-/* Example Tailwind usage: override in parent or via [styles] input */
 :host {
-  display: block;
+  display: inline-block;
+}
+
+.heading-layout-container {
+  width: 100%;
+
+  &:hover:not(.selected) {
+    cursor: pointer;
+    border: 1px solid #ccc;
+  }
+
+  &.selected {
+    border: 1px solid #ccc;
+  }
 }

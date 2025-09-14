@@ -1,20 +1,25 @@
-@switch (model.level) {
-  @case (1) {
-    <h1 [ngClass]="model.styles">{{ model.text }}</h1>
+<div
+  class="heading-layout-container w-full p-1"
+  [class.selected]="isSelectedAsParentContainer$ | async"
+>
+  @switch (model.level) {
+    @case (1) {
+      <h1 [ngClass]="model.styles">{{ model.text }}</h1>
+    }
+    @case (2) {
+      <h2 [ngClass]="model.styles">{{ model.text }}</h2>
+    }
+    @case (3) {
+      <h3 [ngClass]="model.styles">{{ model.text }}</h3>
+    }
+    @case (4) {
+      <h4 [ngClass]="model.styles">{{ model.text }}</h4>
+    }
+    @case (5) {
+      <h5 [ngClass]="model.styles">{{ model.text }}</h5>
+    }
+    @case (6) {
+      <h6 [ngClass]="model.styles">{{ model.text }}</h6>
+    }
   }
-  @case (2) {
-    <h2 [ngClass]="model.styles">{{ model.text }}</h2>
-  }
-  @case (3) {
-    <h3 [ngClass]="model.styles">{{ model.text }}</h3>
-  }
-  @case (4) {
-    <h4 [ngClass]="model.styles">{{ model.text }}</h4>
-  }
-  @case (5) {
-    <h5 [ngClass]="model.styles">{{ model.text }}</h5>
-  }
-  @case (6) {
-    <h6 [ngClass]="model.styles">{{ model.text }}</h6>
-  }
-}
+</div>

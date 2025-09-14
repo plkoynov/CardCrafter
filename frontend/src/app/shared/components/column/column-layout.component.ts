@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 import { ColumnComponent } from '../../../models/layout.model';
+import { SvgIconComponent } from '../../ui/icons/svg-icon.component';
 import { BaseLayoutComponent } from '../base/base-layout.component';
 import { HeadingLayoutComponent } from '../heading/heading-layout.component';
 import { ImageLayoutComponent } from '../image/image-layout.component';
@@ -21,6 +22,7 @@ import { TextLayoutComponent } from '../text/text-layout.component';
     LinkLayoutComponent,
     TextLayoutComponent,
     RowLayoutComponent,
+    SvgIconComponent,
   ],
 })
 export class ColumnLayoutComponent extends BaseLayoutComponent<ColumnComponent> {}

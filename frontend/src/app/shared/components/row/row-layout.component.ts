@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, forwardRef } from '@angular/core';
 import { RowComponent } from '../../../models/layout.model';
+import { SvgIconComponent } from '../../ui/icons/svg-icon.component';
 import { BaseLayoutComponent } from '../base/base-layout.component';
 import { ColumnLayoutComponent } from '../column/column-layout.component';
 import { HeadingLayoutComponent } from '../heading/heading-layout.component';
@@ -19,6 +20,7 @@ import { TextLayoutComponent } from '../text/text-layout.component';
     LinkLayoutComponent,
     TextLayoutComponent,
     forwardRef(() => ColumnLayoutComponent),
+    SvgIconComponent,
   ],
 })
 export class RowLayoutComponent extends BaseLayoutComponent<RowComponent> {}
